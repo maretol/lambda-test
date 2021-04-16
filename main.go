@@ -3,16 +3,16 @@ package main
 import (
 	"context"
 	"fmt"
+	"os"
 
 	"github.com/aws/aws-lambda-go/lambda"
 )
 
-type MyEvent struct {
-	Name string `json:"name"`
-}
-
-func HandleRequest(ctx context.Context, name MyEvent) (string, error) {
-	return fmt.Sprintf("Hello %s!", name.Name), nil
+func HandleRequest(ctx context.Context) (string, error) {
+	if os.Getenv("MODE") == "ERROR" {
+		return "Hello Error!", fmt.Errorf("Error!!")
+	}
+	return "Hello World!", nil
 }
 
 func main() {
