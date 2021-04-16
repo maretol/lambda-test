@@ -1,2 +1,1 @@
-# notification of lambda and sns
-
+# lambda sns test
